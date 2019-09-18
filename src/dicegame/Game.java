@@ -58,19 +58,6 @@ public class Game {
         }
     }
     
-    /*
-    * Reads the current values of the dice
-    * @return void
-    */
-    private void readDice(Game game){
-        
-        int i =1;
-        for (Die temp : game.dice) 
-        {
-            System.out.println("Dice "+ i +"current value is: " + temp.getCurrentValue());
-            i++;
-        }
-    }
     
     /*
     * Defines scoring based on number of dice available and the sides on the dice
@@ -100,10 +87,10 @@ public class Game {
     * calculates a percentile and returns the value associated with that percentile from the array
     * @return long
     */
-    public static long Percentile(int[] latencies, double Percentile)
+    private static long Percentile(int[] arr, double Percentile)
     {     
-        int Index = (int)Math.ceil(((double)Percentile / (double)100) * (double)latencies.length);
-        return latencies[Index-1];
+        int Index = (int)Math.ceil(((double)Percentile / (double)100) * (double)arr.length);
+        return arr[Index-1];
     }
     
    
