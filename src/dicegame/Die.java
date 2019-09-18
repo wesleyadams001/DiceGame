@@ -66,6 +66,10 @@ public class Die {
         //System.out.println("Current value: " + currentValue);
     }
 
+    /**
+     * Gets the current value
+     * @return int representing current value of a die
+     */
     public int getCurrentValue() {
         if (currentValue == 0) {
             rollDie();

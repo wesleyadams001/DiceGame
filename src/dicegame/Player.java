@@ -27,7 +27,7 @@ public class Player {
 
     /**
      * Gets the name of a player
-     * @return string
+     * @return string of the player name
      */
     public String getName() {
         return this.name;
@@ -35,7 +35,7 @@ public class Player {
 
     /**
      * gets the players account amount
-     * @return string
+     * @return string a string of the account amount
      */
     public String getAccount() {
         return this.account.getAmount();
@@ -43,8 +43,8 @@ public class Player {
 
     /**
      * updates the players account 
-     * @param dollars int
-     * @param cents int
+     * @param dollars int dollars
+     * @param cents int cents
      */
     public void updateAccount(int dollars, int cents) {
         this.account.withdrawal(dollars, cents);
@@ -60,7 +60,7 @@ public class Player {
    
     /**
      * gets the players wager
-     * @return AcctValue
+     * @return AcctValue AcctValue object
      */
     public AcctValue getWager(){
         return this.wager;

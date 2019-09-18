@@ -23,8 +23,8 @@ public class Account {
     /**
      * Default constructor that sets the currency locale 
      * and the amount in the account
-     * @param locale
-     * @param amount
+     * @param locale a locale object represening country curreny type ie US United States
+     * @param amount pennies
      */
     public Account(Locale locale, long val) {
         this.locale = locale;
@@ -34,7 +34,7 @@ public class Account {
      
     /**
      * Get function that gets the current amount in the account
-     * @return String
+     * @return String a String representation of the amount in the account
      */
     public String getAmount() {
         AcctValue val = Utilities.convertUnitsToCurrency(this.units);
@@ -44,7 +44,7 @@ public class Account {
      
     /**
      * Get function that gets the current locale of the account
-     * @return locale
+     * @return locale returns the locale associated with the account
      */
     public Locale getLocale() {
         return this.locale;
@@ -60,7 +60,7 @@ public class Account {
     
     /**
      * Update function for the account that takes a int for dollars and cents
-     * @param deposit
+     * @param additionalunits units (pennies) add to the account
      */
     private long update(long addionalUnits) {
         this.units += addionalUnits;
@@ -70,9 +70,9 @@ public class Account {
     
     /**
      * Withdrawals a amount from the account
-     * @param wDollars
-     * @param wCents
-     * @return long withdrawn value
+     * @param wDollars int for dollars
+     * @param wCents int for cents
+     * @return long withdrawn value pennies
      */
     public long withdrawal(int wDollars, int wCents){
         long val = (wDollars*100)+wCents;

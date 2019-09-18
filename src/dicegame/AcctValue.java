@@ -24,7 +24,7 @@ public class AcctValue {
     }
     
     /**
-     *
+     * Gets the value for validity
      * @return boolean for if valid account value
      */
     public Boolean getValidity(){
@@ -32,7 +32,7 @@ public class AcctValue {
     }
     
     /**
-     *
+     * Gets the value for dollars
      * @return int for dollars
      */
     public int getDollars(){
@@ -40,7 +40,7 @@ public class AcctValue {
     }
     
     /**
-     *
+     * Gets the value for cents
      * @return int for cents 
      */
     public int getCents(){

@@ -85,7 +85,7 @@ public class Game {
     
     /*
     * calculates a percentile and returns the value associated with that percentile from the array
-    * @return long
+    * @return long the index of the array to use
     */
     private static long Percentile(int[] arr, double Percentile)
     {     
@@ -273,6 +273,11 @@ public class Game {
         
     }
     
+    /**
+     *
+     * @param in Scanner object for input
+     * @return returns int for number of sides
+     */
     public static int getNumberOfSides(Scanner in){
         System.out.println("Input number of sides: ");
         String input = in.nextLine();
@@ -281,6 +286,11 @@ public class Game {
         return numberOfSides;
     }
     
+    /**
+     *
+     * @param in Scanner object for input
+     * @return int for number of sides
+     */
     public static int getNumberOfDice(Scanner in){
         
         System.out.println("Input number of dice: ");
@@ -290,12 +300,22 @@ public class Game {
         return numDice;
     }
     
+    /**
+     *
+     * @param in Scanner object for input
+     * @return String for player name
+     */
     public static String promptPlayerName(Scanner in){
         System.out.println("Enter player name");
         String s = in.nextLine();
         return s;
     }
     
+    /**
+     *
+     * @param in Scanner for input
+     * @return AcctValue object with a starting account value
+     */
     public static AcctValue promptStartingAcctVal(Scanner in){
         AcctValue value = new AcctValue(-1,-1, false);
         
@@ -308,6 +328,11 @@ public class Game {
         return value;
     }
     
+    /**
+     *
+     * @param in Scanner object for input
+     * @return String indicating yes(y) no(n) 
+     */
     public static String promptWager(Scanner in){
         
         String a = null;
@@ -320,6 +345,11 @@ public class Game {
         return a;
     }
     
+    /**
+     *
+     * @param in Scanner object for input
+     * @return AcctValue object 
+     */
     public static AcctValue retrieveWager(Scanner in){
         AcctValue value2 = new AcctValue(-1,-1, false);
         while(value2.getValidity() == false){
@@ -331,6 +361,11 @@ public class Game {
 
     }
     
+    /**
+     *
+     * @param in Scanner object for input
+     * @return String with either yes(y), no(n) or push (p)
+     */
     public static String promptRollDice(Scanner in){
         Boolean isValidResponse = false;
         String b = null;
@@ -342,6 +377,11 @@ public class Game {
         return b;
     }
     
+    /**
+     *
+     * @param in Scanner object for input
+     * @return String with yes(y) or no(n)
+     */
     public static String promptChangeWager(Scanner in){
         Boolean isValidResponse = false;
         String c = null;
@@ -353,6 +393,11 @@ public class Game {
         return c;
     }
     
+    /**
+     *
+     * @param in Scanner object for input
+     * @return String with yes(y) or no (n)
+     */
     public static String Quit(Scanner in){
         Boolean isValidResponse = false;
         String b = null;

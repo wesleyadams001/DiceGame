@@ -11,6 +11,11 @@ package dicegame;
  */
 public class InputValidation {
 
+    /**
+     * parses dice information
+     * @param a input string
+     * @return returns a die object
+     */
     public static Die parseDiceInfo(String a) {
         Die die = null;
         if (a.length() < 50 && a.contains(",")) {
@@ -29,6 +34,11 @@ public class InputValidation {
         return die;
     }
 
+    /**
+     *
+     * @param a String input value
+     * @return int representing number of die
+     */
     public static int parseNumberOfDie(String a) {
         int x = -1;
         Boolean isNum = isNumeric(a);
@@ -40,6 +50,11 @@ public class InputValidation {
         return x;
     }
     
+    /**
+     *
+     * @param a String representing input
+     * @return integer for the number of sides
+     */
     public static int parseNumberOfSides(String a){
         int x = -1;
         Boolean isNum = isNumeric(a);
@@ -50,6 +65,11 @@ public class InputValidation {
         return x;
     }
 
+    /**
+     * Parses a response
+     * @param a String input
+     * @return a boolean value
+     */
     public static Boolean parseResponse(String a) {
         if (a.length() < 2) {
             if (a.equals("y") || a.equals("n") || a.equals("p")) {
@@ -62,6 +82,11 @@ public class InputValidation {
         return false;
     }
 
+    /**
+     * Parses a value
+     * @param value An input string
+     * @return an account value object
+     */
     public static AcctValue parseValue(String value) {
 
         if (value.length() < 30) {
@@ -113,11 +138,21 @@ public class InputValidation {
 
     }
 
+    /**
+     * determines if a string is numeric with a decimal
+     * @param value An input string
+     * @return a boolean
+     */
     private static boolean isNumericWithDecimal(String str) {
         //"^\\d*\\.\\d+|\\d+\\.\\d*$"
         return str.matches("^\\d*\\.\\d+|\\d+\\.\\d*$");
     }
 
+    /**
+     * determines if a string is numeric 
+     * @param value An input string
+     * @return a boolean
+     */
     private static boolean isNumeric(String str) {
         //"[0-9]+"
         return str.matches("[0-9]+");
