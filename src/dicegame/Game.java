@@ -33,10 +33,10 @@ public class Game {
     private int wins =0;
     private int losses =0;
     private int pushes =0;
-    private static double WIN_PERCENTILE_LB = 0;
-    private static double WIN_PERCENTILE_UB = 0;
-    private static double LOSE_PERCENTILE_LB = 0;
-    private static double LOSE_PERCENTILE_UB = 0;
+    private double WIN_PERCENTILE_LB = 0;
+    private double WIN_PERCENTILE_UB = 0;
+    private double LOSE_PERCENTILE_LB = 0;
+    private double LOSE_PERCENTILE_UB = 0;
     private static int MAX =0;
     private static int MIN = 0;
     
@@ -47,12 +47,12 @@ public class Game {
         this.targetValue =0;
         
     }
-
+    
     /*
     * Use the die class to make the dice
     * @return void
     */
-    private void makeDice(int quant, int numSides) {
+    public void makeDice(int quant, int numSides) {
         for (int i = 0; i < quant; i++) {
             dice.add(new Die(numSides, 1));
         }
@@ -63,7 +63,7 @@ public class Game {
     * Defines scoring based on number of dice available and the sides on the dice
     * @return void
     */
-    private void defineScores(int numDice, int numSides, int winLowerBound, int winUpperBound, int loseLowerBound, int loseUpperBound){
+    public void defineScores(int numDice, int numSides, int winLowerBound, int winUpperBound, int loseLowerBound, int loseUpperBound){
 
         this.MIN = numDice;
         this.MAX = numDice * numSides;
@@ -93,6 +93,47 @@ public class Game {
         return arr[Index-1];
     }
     
+    public void setTargetValue(int x){
+        this.targetValue = x;
+    }
+    
+    public ArrayList<Die> getDice(){
+        return this.dice;
+    }
+    
+    public void resetDice(){
+        this.dice = new ArrayList<Die>();
+    }
+    
+    
+    public void incrementLosses(){
+        this.losses++;
+    }
+    
+    public void incrementWins(){
+        this.wins++;
+    }
+    
+    public void setWin(int x){
+        this.win = x;
+    }
+    
+    public int getWin(){
+        return this.win;
+    }
+    
+    public boolean getPush(){
+        return this.push;
+    }
+    
+    public void setPush(boolean p){
+        this.push = p;
+    }
+    
+    public void incrementPushes(){
+        this.pushes++;
+    }
+    
    
     
     /*
@@ -119,159 +160,31 @@ public class Game {
     public void reportGame() {
         System.out.println("Player is " + player.getName());
         System.out.println("There are " + dice.size() + " dice.");
-        System.out.println("Winning values are between: " + this.WIN_PERCENTILE_LB + " and " +this.WIN_PERCENTILE_UB);
-        System.out.println("Losing values are between: " + this.LOSE_PERCENTILE_LB + " and " +this.LOSE_PERCENTILE_UB);
+        System.out.println("Winning values between: " + this.WIN_PERCENTILE_LB + " and " +this.WIN_PERCENTILE_UB);
+        System.out.println("Losing values between: " + this.LOSE_PERCENTILE_LB + " and " +this.LOSE_PERCENTILE_UB);
         System.out.println("Totals");
         System.out.println("Losses: "+losses+" |Wins: "+wins+ "|Push:" +pushes);
     }
-
-    public static void main(String[] args) {
-
+    
+    /*
+    * Reports the game stats and score as a string
+    * @return String
+    */
+    public String reportGameText() {
         
-        Scanner in = new Scanner(System.in); 
-        String name = promptPlayerName(in);
-        AcctValue value = promptStartingAcctVal(in);
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n");
+        sb.append("Player is ").append(player.getName()).append("\n");
+        sb.append("There are ").append(dice.size()).append(" dice.\n");
+        sb.append("Player Score: ").append(this.targetValue).append("\n");
+        sb.append("Winning values between: ").append(this.WIN_PERCENTILE_LB).append(" and ").append(this.WIN_PERCENTILE_UB).append("\n");
+        sb.append("Losing values between: ").append(this.LOSE_PERCENTILE_LB).append(" and ").append(this.LOSE_PERCENTILE_UB).append("\n");
+        sb.append("Totals").append("\n");
+        sb.append("Losses: ").append(this.losses).append(" |Wins: ").append(this.wins).append("|Push:").append(this.pushes);
         
-        Account acct = new Account(Locale.US, value.getUnits());
-        Player player = new Player(name, acct);
-        Game game = new Game(player);
-        System.out.println(player.getAccount());
-        
-        String a = null, b = null, c = null, d = null;
-
-        //prompt wager
-        a = promptWager(in);
-            
-        //prompt number of dice
-        int numberOfDice = getNumberOfDice(in);
-        
-        //prompt number of sides 
-        int numberOfSides = getNumberOfSides(in);
-        
-        //define game scores
-        game.defineScores(numberOfDice, numberOfSides, 5, 40, 41, 85 );
-        
-        //Make dice
-        game.makeDice(numberOfDice, numberOfSides);
-        
-        AcctValue value2 = new AcctValue(-1,-1, false);
-        
-        //get wager
-        value2 = retrieveWager(in);
-
-        //set player wager
-        player.setWager(value2);
-        
-        //if input is yes
-        if(a.equals("y")){
-
-            while(1==1){
-                
-                //prompt roll dice
-                b = promptRollDice(in);
-
-                if(b.equals("y")){
-
-
-                    int tv = 0;
-                    //roll each die
-                    for (Die temp : game.dice) {
-
-                        //Rolls die
-                        temp.rollDie();
-
-                        //sums values
-                        tv = tv + temp.getCurrentValue();
-                        
-                    }
-                    //assign the target value
-                    game.targetValue = tv;
-                    System.out.println("score: "+ tv);
-
-                    //Verify the score
-                    game.verifyScore();
-                    
-                    //Reads the dice result
-                    //game.readDice(game);
-
-                    //finish
-                    game.reportGame();
-
-                    if(game.win == 1){
-                        //Won, retrieve the wager and update the players accound with the wager amount
-                        AcctValue acctVal  = player.getWager();
-                        player.updateAccount(-acctVal.getDollars(), -acctVal.getCents());
-                        game.wins++;
-                        game.win=0;
-                    }
-                    else if(game.win == 1 && game.push == true){
-                        //Do nothing
-                        game.win=0;
-                    }
-                    else if(game.win == -1){
-                        //Otherwise lost, retrieve the wager
-                        AcctValue acctVal  = player.getWager();
-
-                        //flip it negative
-                        player.updateAccount(acctVal.getDollars(), acctVal.getCents());
-                        
-                        game.losses++;
-                        
-                        game.win=0;
-                    }
-                    else{
-                        System.out.println("===========Null game==========");
-                    }
-                }
-                else if(b.equals("n")){
-                    
-                    //prompt to change wager
-                    c=promptChangeWager(in);
-                    
-                    if(c.equals("y")){
-                        
-                        AcctValue value3 = new AcctValue(-1,-1, false);
-                        
-                        //get new wager
-                        value3 = retrieveWager(in);
-
-                        //set the new wager
-                        player.setWager(value3);
-                    }
-                    
-                    //Prompt quit
-                    String quit = Quit(in);
-
-                    //QUIT 
-                    if(quit.equals("y")){
-                        System.exit(0);
-                    }
-
-                }
-                else if(b.equals("p")){
-                    
-                    //Notify pushed
-                    System.out.println("==PUSHED==");
-                    
-                    //increment push
-                    game.pushes++;
-                }
-            }
-            
-        }
-        else{
-            
-            String quit = Quit(in);
-
-            //QUIT 
-            if(quit.equals("y")){
-                System.exit(0);
-            }
-        }
-        
-
-        
+        return sb.toString();
     }
+
     
     /**
      *
@@ -281,6 +194,18 @@ public class Game {
     public static int getNumberOfSides(Scanner in){
         System.out.println("Input number of sides: ");
         String input = in.nextLine();
+        int numberOfSides = InputValidation.parseNumberOfSides(input);//add check for valid amt
+                
+        return numberOfSides;
+    }
+    /**
+     *
+     * @param in Scanner object for input
+     * @return returns int for number of sides
+     */
+    public static int getNumberOfSides(String in){
+        System.out.println("Input number of sides: ");
+        String input = in;
         int numberOfSides = InputValidation.parseNumberOfSides(input);//add check for valid amt
                 
         return numberOfSides;
@@ -303,11 +228,36 @@ public class Game {
     /**
      *
      * @param in Scanner object for input
+     * @return int for number of sides
+     */
+    public static int getNumberOfDice(String in){
+        
+        System.out.println("Input number of dice: ");
+        String input = in;
+        int numDice = InputValidation.parseNumberOfDie(input);//add check for valid amt
+                
+        return numDice;
+    }
+    
+    /**
+     *
+     * @param in Scanner object for input
      * @return String for player name
      */
     public static String promptPlayerName(Scanner in){
         System.out.println("Enter player name");
         String s = in.nextLine();
+        return s;
+    }
+    
+    /**
+     *
+     * @param in String object for input
+     * @return String for player name
+     */
+    public static String promptPlayerName(String in){
+        //System.out.println("Enter player name");
+        String s = in;
         return s;
     }
     
@@ -323,6 +273,23 @@ public class Game {
             
             System.out.println("Enter money in starting account value.");
             String a = in.nextLine();
+            value = InputValidation.parseValue(a);
+        }
+        return value;
+    }
+    
+     /**
+     *
+     * @param in String for input
+     * @return AcctValue object with a starting account value
+     */
+    public static AcctValue promptStartingAcctVal(String in){
+        AcctValue value = new AcctValue(-1,-1, false);
+        
+        while(value.getValidity()==false){
+            
+            //System.out.println("Enter money in starting account value.");
+            String a = in;
             value = InputValidation.parseValue(a);
         }
         return value;
@@ -348,6 +315,23 @@ public class Game {
     /**
      *
      * @param in Scanner object for input
+     * @return String indicating yes(y) no(n) 
+     */
+    public static String promptWager(String in){
+        
+        String a = null;
+        Boolean isValidResponse = false;
+        while(isValidResponse != true){
+        System.out.println("Would you like to make a wager? y/n");
+        a = in;
+        isValidResponse = InputValidation.parseResponse(a);
+        }
+        return a;
+    }
+    
+    /**
+     *
+     * @param in Scanner object for input
      * @return AcctValue object 
      */
     public static AcctValue retrieveWager(Scanner in){
@@ -360,6 +344,24 @@ public class Game {
         return value2;
 
     }
+    
+    /**
+     *
+     * @param in Scanner object for input
+     * @return AcctValue object 
+     */
+    public static AcctValue retrieveWager(String in){
+        AcctValue value2 = new AcctValue(-1,-1, false);
+        while(value2.getValidity() == false){
+            System.out.println("Enter a wager: ");
+            String wager = in;
+            value2 = InputValidation.parseValue(wager);//add check for valid amt
+            }
+        return value2;
+
+    }
+    
+    
     
     /**
      *
