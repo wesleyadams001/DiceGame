@@ -67,8 +67,8 @@ public class Game {
 
         this.MIN = numDice;
         this.MAX = numDice * numSides;
-        int[] intArray = new int[MAX-MIN];
-        int start = this.MIN;
+        long[] intArray = new long[MAX-MIN];
+        long start = this.MIN;
         
         for (int i = 0; i < intArray.length; i++){
             intArray[i] = start;
@@ -81,7 +81,7 @@ public class Game {
         this.LOSE_PERCENTILE_UB = Percentile(intArray, loseUpperBound);
         
         //post-operative adjustment for Law of large numbers
-        if(numDice>10 && numSides>10){
+        if(numDice>20 && numSides>20){
             
             //calculate average
             long avg = calculateAverage(intArray);
@@ -93,7 +93,7 @@ public class Game {
             if(numSides>numDice){
                 denom = numDice;
             }
-            else if(numDice> numSides){
+            else{
                 denom = numSides;
             }
             
@@ -103,6 +103,9 @@ public class Game {
             //assign new bound
             if(this.WIN_PERCENTILE_UB<adjFactor || this.WIN_PERCENTILE_UB>adjFactor){
                 this.WIN_PERCENTILE_UB = adjFactor;
+                
+                //prevent overlap on adjustment
+                this.LOSE_PERCENTILE_LB = adjFactor;
             }
             
         }
@@ -113,7 +116,7 @@ public class Game {
     * calculates a percentile and returns the value associated with that percentile from the array
     * @return long the index of the array to use
     */
-    private static long Percentile(int[] arr, double Percentile)
+    private static long Percentile(long[] arr, double Percentile)
     {     
         int Index = (int)Math.ceil(((double)Percentile / (double)100) * (double)arr.length);
         return arr[Index-1];
@@ -123,7 +126,7 @@ public class Game {
     * calculates an average from the array
     * @return long average
     */
-    private static long calculateAverage(int[] arr){
+    private static long calculateAverage(long[] arr){
         long val = 0;
         for(int x = 0; x< arr.length; x++){
             val += arr[x];
@@ -136,7 +139,7 @@ public class Game {
     * calculates a standard deviation from the array
     * @return long standard deviation
     */
-    private static long calculateStandardDev(int[] arr, long avg){
+    private static long calculateStandardDev(long[] arr, long avg){
         //set a double
         double sd = 0;
         
