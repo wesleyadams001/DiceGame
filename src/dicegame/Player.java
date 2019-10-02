@@ -10,8 +10,8 @@ import java.util.Locale;
 import java.util.Scanner;
 
 /**
- *
- * @author drochowi Dan Rochowiak, CS321, Fall 2019
+ * Class that contains player related information
+ * @author Wesley adams
  */
 public class Player {
 

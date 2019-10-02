@@ -6,7 +6,7 @@
 package dicegame;
 
 /**
- * A Utilities class to hold simple helper functions
+ * A Utilities class to hold simple helper functions related to currency
  * @author Wesley
  */
 public class Utilities {

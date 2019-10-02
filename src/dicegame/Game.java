@@ -80,6 +80,32 @@ public class Game {
         this.LOSE_PERCENTILE_LB = Percentile(intArray, loseLowerBound);
         this.LOSE_PERCENTILE_UB = Percentile(intArray, loseUpperBound);
         
+        //post-operative adjustment for Law of large numbers
+        if(numDice>10 && numSides>10){
+            
+            //calculate average
+            long avg = calculateAverage(intArray);
+            
+            //calculate the standard deviation
+            long stDev = calculateStandardDev(intArray, avg);
+            
+            int denom = 0;
+            if(numSides>numDice){
+                denom = numDice;
+            }
+            else if(numDice> numSides){
+                denom = numSides;
+            }
+            
+            //calculate adjustment factor
+            long adjFactor = avg - (stDev/denom);
+            
+            //assign new bound
+            if(this.WIN_PERCENTILE_UB<adjFactor || this.WIN_PERCENTILE_UB>adjFactor){
+                this.WIN_PERCENTILE_UB = adjFactor;
+            }
+            
+        }
         
     }
     
@@ -93,43 +119,117 @@ public class Game {
         return arr[Index-1];
     }
     
+    /*
+    * calculates an average from the array
+    * @return long average
+    */
+    private static long calculateAverage(int[] arr){
+        long val = 0;
+        for(int x = 0; x< arr.length; x++){
+            val += arr[x];
+        }
+        val /= arr.length;
+        return val;
+    }
+    
+    /*
+    * calculates a standard deviation from the array
+    * @return long standard deviation
+    */
+    private static long calculateStandardDev(int[] arr, long avg){
+        //set a double
+        double sd = 0;
+        
+        //loop through array
+        for (int i = 0; i < arr.length; i++)
+        {
+            //take value at i and subtract the mean then square it and divide by the length
+            sd += Math.pow((arr[i] - avg),2) / arr.length;
+        }
+        
+        //take the square root to get standard deviation
+        double standardDeviation = Math.sqrt(sd);
+        
+        //round it to get the nearest long
+        long val = Math.round(standardDeviation);
+        return val;
+    }
+    
+    
+    /**
+     * Sets the target value for comparison
+     * @param x integer
+     */
     public void setTargetValue(int x){
         this.targetValue = x;
     }
     
+    /**
+     * Returns the current arraylist of Die 
+     * @return ArrayList<Die>
+     */
     public ArrayList<Die> getDice(){
         return this.dice;
     }
     
+    /**
+     * Resets the contents of the arraylist of die
+     */
     public void resetDice(){
         this.dice = new ArrayList<Die>();
     }
     
-    
+    /**
+     * increases the total losses by 1
+     */
     public void incrementLosses(){
         this.losses++;
     }
     
+    /**
+     * Increases the total wins by 1
+     */
     public void incrementWins(){
         this.wins++;
     }
     
+    /**
+     * Sets the integer value representing a win
+     * @param x as in integer
+     */
     public void setWin(int x){
         this.win = x;
     }
     
+    /**
+     * Gets the value of the win 1,0,-1
+     * @return integer
+     */
     public int getWin(){
         return this.win;
     }
     
+    /**
+     * Gets the value of the push property indicating
+     * if the player chose to push
+     * @return bool
+     */
     public boolean getPush(){
         return this.push;
     }
     
+    /**
+     * Sets the value of the push property indicating
+     * if the player chose to push 
+     * @param p bool
+     */
     public void setPush(boolean p){
         this.push = p;
     }
     
+    /**
+     * Increases the total pushes by one
+     */
     public void incrementPushes(){
         this.pushes++;
     }
@@ -152,19 +252,6 @@ public class Game {
             this.win =0;
         }
     }
-
-    /*
-    * Reports the game stats and score
-    * @return void
-    */
-    public void reportGame() {
-        System.out.println("Player is " + player.getName());
-        System.out.println("There are " + dice.size() + " dice.");
-        System.out.println("Winning values between: " + this.WIN_PERCENTILE_LB + " and " +this.WIN_PERCENTILE_UB);
-        System.out.println("Losing values between: " + this.LOSE_PERCENTILE_LB + " and " +this.LOSE_PERCENTILE_UB);
-        System.out.println("Totals");
-        System.out.println("Losses: "+losses+" |Wins: "+wins+ "|Push:" +pushes);
-    }
     
     /*
     * Reports the game stats and score as a string
@@ -185,235 +272,6 @@ public class Game {
         return sb.toString();
     }
 
-    
-    /**
-     *
-     * @param in Scanner object for input
-     * @return returns int for number of sides
-     */
-    public static int getNumberOfSides(Scanner in){
-        System.out.println("Input number of sides: ");
-        String input = in.nextLine();
-        int numberOfSides = InputValidation.parseNumberOfSides(input);//add check for valid amt
-                
-        return numberOfSides;
-    }
-    /**
-     *
-     * @param in Scanner object for input
-     * @return returns int for number of sides
-     */
-    public static int getNumberOfSides(String in){
-        System.out.println("Input number of sides: ");
-        String input = in;
-        int numberOfSides = InputValidation.parseNumberOfSides(input);//add check for valid amt
-                
-        return numberOfSides;
-    }
-    
-    /**
-     *
-     * @param in Scanner object for input
-     * @return int for number of sides
-     */
-    public static int getNumberOfDice(Scanner in){
-        
-        System.out.println("Input number of dice: ");
-        String input = in.nextLine();
-        int numDice = InputValidation.parseNumberOfDie(input);//add check for valid amt
-                
-        return numDice;
-    }
-    
-    /**
-     *
-     * @param in Scanner object for input
-     * @return int for number of sides
-     */
-    public static int getNumberOfDice(String in){
-        
-        System.out.println("Input number of dice: ");
-        String input = in;
-        int numDice = InputValidation.parseNumberOfDie(input);//add check for valid amt
-                
-        return numDice;
-    }
-    
-    /**
-     *
-     * @param in Scanner object for input
-     * @return String for player name
-     */
-    public static String promptPlayerName(Scanner in){
-        System.out.println("Enter player name");
-        String s = in.nextLine();
-        return s;
-    }
-    
-    /**
-     *
-     * @param in String object for input
-     * @return String for player name
-     */
-    public static String promptPlayerName(String in){
-        //System.out.println("Enter player name");
-        String s = in;
-        return s;
-    }
-    
-    /**
-     *
-     * @param in Scanner for input
-     * @return AcctValue object with a starting account value
-     */
-    public static AcctValue promptStartingAcctVal(Scanner in){
-        AcctValue value = new AcctValue(-1,-1, false);
-        
-        while(value.getValidity()==false){
-            
-            System.out.println("Enter money in starting account value.");
-            String a = in.nextLine();
-            value = InputValidation.parseValue(a);
-        }
-        return value;
-    }
-    
-     /**
-     *
-     * @param in String for input
-     * @return AcctValue object with a starting account value
-     */
-    public static AcctValue promptStartingAcctVal(String in){
-        AcctValue value = new AcctValue(-1,-1, false);
-        
-        while(value.getValidity()==false){
-            
-            //System.out.println("Enter money in starting account value.");
-            String a = in;
-            value = InputValidation.parseValue(a);
-        }
-        return value;
-    }
-    
-    /**
-     *
-     * @param in Scanner object for input
-     * @return String indicating yes(y) no(n) 
-     */
-    public static String promptWager(Scanner in){
-        
-        String a = null;
-        Boolean isValidResponse = false;
-        while(isValidResponse != true){
-        System.out.println("Would you like to make a wager? y/n");
-        a = in.nextLine();
-        isValidResponse = InputValidation.parseResponse(a);
-        }
-        return a;
-    }
-    
-    /**
-     *
-     * @param in Scanner object for input
-     * @return String indicating yes(y) no(n) 
-     */
-    public static String promptWager(String in){
-        
-        String a = null;
-        Boolean isValidResponse = false;
-        while(isValidResponse != true){
-        System.out.println("Would you like to make a wager? y/n");
-        a = in;
-        isValidResponse = InputValidation.parseResponse(a);
-        }
-        return a;
-    }
-    
-    /**
-     *
-     * @param in Scanner object for input
-     * @return AcctValue object 
-     */
-    public static AcctValue retrieveWager(Scanner in){
-        AcctValue value2 = new AcctValue(-1,-1, false);
-        while(value2.getValidity() == false){
-            System.out.println("Enter a wager: ");
-            String wager = in.nextLine();
-            value2 = InputValidation.parseValue(wager);//add check for valid amt
-            }
-        return value2;
 
-    }
-    
-    /**
-     *
-     * @param in Scanner object for input
-     * @return AcctValue object 
-     */
-    public static AcctValue retrieveWager(String in){
-        AcctValue value2 = new AcctValue(-1,-1, false);
-        while(value2.getValidity() == false){
-            System.out.println("Enter a wager: ");
-            String wager = in;
-            value2 = InputValidation.parseValue(wager);//add check for valid amt
-            }
-        return value2;
 
-    }
-    
-    
-    
-    /**
-     *
-     * @param in Scanner object for input
-     * @return String with either yes(y), no(n) or push (p)
-     */
-    public static String promptRollDice(Scanner in){
-        Boolean isValidResponse = false;
-        String b = null;
-        while(isValidResponse != true){
-                    System.out.println("Would you like to roll the dice or push? y/n/p");
-                    b = in.nextLine();
-                    isValidResponse = InputValidation.parseResponse(b);
-                }
-        return b;
-    }
-    
-    /**
-     *
-     * @param in Scanner object for input
-     * @return String with yes(y) or no(n)
-     */
-    public static String promptChangeWager(Scanner in){
-        Boolean isValidResponse = false;
-        String c = null;
-        while(isValidResponse != true){
-                    System.out.println("Would you like to change your wager? y/n");
-                    c = in.nextLine();
-                    isValidResponse = InputValidation.parseResponse(c);
-                    }
-        return c;
-    }
-    
-    /**
-     *
-     * @param in Scanner object for input
-     * @return String with yes(y) or no (n)
-     */
-    public static String Quit(Scanner in){
-        Boolean isValidResponse = false;
-        String b = null;
-        while(isValidResponse != true){
-                System.out.println("Would you like to Quit? y/n");
-                b = in.nextLine();
-                isValidResponse = InputValidation.parseResponse(b);
-                }
-        return b;
-    }
-    
-    
-    
-    
-    
-    
 }

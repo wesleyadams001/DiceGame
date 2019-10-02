@@ -6,7 +6,10 @@
 package dicegame;
 
 /**
- *
+ * A class that represents an account value such as an amount that is being deposited or an amount that is being withdrawn
+ * This class contains a validity key as a boolean that indicates whether the value is invalid or valid based on interactions
+ * with the input validation class. i.e. should the value not pass input validation it can still return an account value yet flag
+ * it as invalid and do something else with it.
  * @author Wesley
  */
 public class AcctValue {
@@ -48,7 +51,7 @@ public class AcctValue {
     }
     
     /**
-     * Gets the value in units (pennies)
+     * Gets the value in units (pennies) for this instance of value
      * @return long
      */
     public long getUnits(){

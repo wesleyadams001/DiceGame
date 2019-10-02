@@ -6,7 +6,7 @@
 package dicegame;
 
 /**
- *
+ * Class that contains static methods that do basic input validation
  * @author Wesley
  */
 public class InputValidation {
@@ -51,39 +51,28 @@ public class InputValidation {
     }
     
     /**
-     *
+     * Parses the number of sides from a string and determines if the value is numeric
+     * as well as verifies that there are less than 13 digits because we do not need 
+     * die that big then if the value seems reasonable cast to a string after that if 
+     * evaluates that is greater than 1
      * @param a String representing input
-     * @return integer for the number of sides
+     * @return integer for the number of sides or negative one for bad input
      */
     public static int parseNumberOfSides(String a){
         int x = -1;
         Boolean isNum = isNumeric(a);
         if (a.length() <13 && isNum){
             x= Integer.valueOf(a);
+            if(x<=1){
+                return x;
+            }
             return x;
         }
         return x;
     }
 
     /**
-     * Parses a response
-     * @param a String input
-     * @return a boolean value
-     */
-    public static Boolean parseResponse(String a) {
-        if (a.length() < 2) {
-            if (a.equals("y") || a.equals("n") || a.equals("p")) {
-                return true;
-            }
-        } else {
-            System.out.println("Enter valid response (y/n)");
-            return false;
-        }
-        return false;
-    }
-
-    /**
-     * Parses a value
+     * Parses a value and returns a AcctValue with a flag that indicates valid or not
      * @param value An input string
      * @return an account value object
      */
@@ -126,11 +115,11 @@ public class InputValidation {
                     AcctValue acc = new AcctValue(dollars, cents, true);
                     return acc;
                 } else {
-                    System.out.println("Make sure to use a value less than 12 digits and that consists of numbers");
+                    //System.out.println("Make sure to use a value less than 12 digits and that consists of numbers");
                 }
             }
         } else {
-            System.out.println("Account value too large, try less than 25 digits.");
+            //System.out.println("Account value too large, try less than 25 digits.");
             return new AcctValue(0, 0, false);
         }
 

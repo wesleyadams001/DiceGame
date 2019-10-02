@@ -22,7 +22,7 @@ public class Die {
     // outside of this class. The field is of the primitive type int.
     private int numberOfSides;
 
-    // A private state or field to hole the current value of the die. 
+    // A private state or field to hold the current value of the die. 
     // Initialized to 0. This is an illegal value.
     // It will be corrected when the die is rolled to a legal value.
     private int currentValue = 0;
@@ -50,20 +50,10 @@ public class Die {
      * Rolls the die to generate a new current value for the die face.
      */
     public void rollDie() {
-        //Initial effort
-        //currentValue = (int) (Math.random() * (((numberOfSides - minValue) + 1)) + minValue);
-        // Used in example second phase
-        // The following is incorrect
-        //currentValue = randomGenerator.nextInt((((numberOfSides - minValue) + 1) + minValue));
-        // A correct step by step approach
-        //int bound = ((numberOfSides - minValue) + 1);
-        // The best way
+
         int bound = numberOfSides;
         int rand = randomGenerator.nextInt(bound);
-        // If you want a better look
-        //System.out.println("Bound: " + bound + " rand: " + rand);
         currentValue = rand + minValue;
-        //System.out.println("Current value: " + currentValue);
     }
 
     /**

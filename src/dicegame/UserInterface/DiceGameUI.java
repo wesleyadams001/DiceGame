@@ -9,18 +9,17 @@ import dicegame.Account;
 import dicegame.AcctValue;
 import dicegame.Die;
 import dicegame.Game;
-import static dicegame.Game.getNumberOfDice;
-import static dicegame.Game.getNumberOfSides;
-import static dicegame.Game.promptPlayerName;
-import static dicegame.Game.promptStartingAcctVal;
-import static dicegame.Game.promptWager;
-import static dicegame.Game.retrieveWager;
+import dicegame.Input;
+import static dicegame.Input.getNumberOfDice;
+import static dicegame.Input.getNumberOfSides;
+import static dicegame.Input.getPlayerName;
+import static dicegame.Input.getStartingAcctVal;
+import static dicegame.Input.getWager;
 import dicegame.Player;
 import java.util.Locale;
-import java.util.Set;
 
 /**
- *
+ * The class that is the view for the program
  * @author Wesley
  */
 public class DiceGameUI extends javax.swing.JFrame {
@@ -46,6 +45,7 @@ public class DiceGameUI extends javax.swing.JFrame {
         //Initialize a game form
         initComponents();
         
+        //Cannot roll until user has entered requisite information
         this.btnRoll.setEnabled(false);
         this.btnPush.setEnabled(false);
         
@@ -224,21 +224,21 @@ public class DiceGameUI extends javax.swing.JFrame {
         pnlPlayerLayout.setHorizontalGroup(
             pnlPlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPlayerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlPlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblPlayerName)
-                    .addComponent(lblInitialAcctValue)
-                    .addComponent(lblSubmit))
                 .addGroup(pnlPlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlPlayerLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(pnlPlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblPlayerName)
+                            .addComponent(lblInitialAcctValue)
+                            .addComponent(lblSubmit))
                         .addGap(26, 26, 26)
                         .addGroup(pnlPlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtPlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtInitialAcctValue, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(pnlPlayerLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGap(141, 141, 141)
                         .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         pnlPlayerLayout.setVerticalGroup(
             pnlPlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,7 +255,7 @@ public class DiceGameUI extends javax.swing.JFrame {
                 .addGroup(pnlPlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblSubmit)
                     .addComponent(btnSubmit))
-                .addGap(0, 20, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         lblCurrentAcctValue.setText("Current Account Value:");
@@ -373,7 +373,7 @@ public class DiceGameUI extends javax.swing.JFrame {
         AcctValue value2 = new AcctValue(-1,-1, false);
         
         //get wager
-        value2 = retrieveWager(this.txtWager.getText());
+        value2 = getWager(this.txtWager.getText());
             
         Roll(value2);
     }//GEN-LAST:event_btnRollActionPerformed
@@ -449,7 +449,7 @@ public class DiceGameUI extends javax.swing.JFrame {
         }
         else{
             
-            System.out.println("===========Null game==========");
+            printTextField("===========Null game==========");
         }
         
         //finish
@@ -467,8 +467,8 @@ public class DiceGameUI extends javax.swing.JFrame {
     
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // Submits player info to the game
-        this.playerName = promptPlayerName(this.txtPlayerName.getText());
-        this.initialAcctValue = promptStartingAcctVal(this.txtInitialAcctValue.getText());
+        this.playerName = getPlayerName(this.txtPlayerName.getText());
+        this.initialAcctValue = getStartingAcctVal(this.txtInitialAcctValue.getText());
         
         //Set up initial information
         //set up a game
@@ -497,7 +497,7 @@ public class DiceGameUI extends javax.swing.JFrame {
         AcctValue value2 = new AcctValue(-1,-1, false);
         
         //get wager
-        value2 = retrieveWager("0.00");
+        value2 = Input.getWager("0.00");
         
         Roll(value2);
     }//GEN-LAST:event_btnPushActionPerformed

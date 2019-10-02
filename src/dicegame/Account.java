@@ -69,7 +69,7 @@ public class Account {
     }
     
     /**
-     * Withdrawals a amount from the account
+     * Withdrawals a amount from the account by updating the account with a negative
      * @param wDollars int for dollars
      * @param wCents int for cents
      * @return long withdrawn value pennies
@@ -84,6 +84,19 @@ public class Account {
             long withdrawal = -val;
             val = update(withdrawal);
         }
+        return val;
+    }
+    
+    /**
+     * Deposits an AcctValue 
+     * @param wDollars the dollars that are added to the account
+     * @param wCents the cents that are added to the account
+     * @return a long value associate with units deposited
+     */
+    public long deposit(int wDollars, int wCents){
+        long val = (wDollars*100)+wCents;
+        long deposit = val;
+        val = update(deposit);
         return val;
     }
      
