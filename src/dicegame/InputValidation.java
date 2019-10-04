@@ -5,12 +5,28 @@
  */
 package dicegame;
 
+import java.math.RoundingMode;
+import java.text.NumberFormat;
+import java.util.Locale;
+import java.util.Set;
+import javax.swing.InputVerifier;
+import javax.swing.JComponent;
+import javax.swing.JFormattedTextField;
+import javax.swing.text.InternationalFormatter;
+import javax.swing.text.MaskFormatter;
+import javax.swing.text.NumberFormatter;
+
 /**
  * Class that contains static methods that do basic input validation
  * @author Wesley
  */
 public class InputValidation {
 
+    private JFormattedTextField tf;
+    
+    public void setCurrencyVerifier(JFormattedTextField tf) {
+        this.tf = tf;
+    }
     /**
      * parses dice information
      * @param a input string
@@ -70,6 +86,28 @@ public class InputValidation {
         }
         return x;
     }
+    
+    /**
+     * Input validation that generates an input mask based on a string that can be reused for all input boxes
+     * @param s as a string input specifier
+     * @return a MaskFormatter
+     */
+    public static MaskFormatter createFormatter(String s) {
+        MaskFormatter formatter = null;
+        try {
+            formatter = new MaskFormatter(s);
+        } catch (java.text.ParseException exc) {
+            System.err.println("formatter is bad: " + exc.getMessage());
+            System.exit(-1);
+        }
+    return formatter;
+    }
+    
+    public static NumberFormat createCurrencyFormatter(){
+        NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
+        format.setMaximumFractionDigits(2);
+        return format;
+    }
 
     /**
      * Parses a value and returns a AcctValue with a flag that indicates valid or not
@@ -88,62 +126,63 @@ public class InputValidation {
 
                 //Split string on decimal
                 String[] array = value.split("\\.");
+    
+                int dollars = Integer.parseInt(array[0]);
+                int cents = Integer.parseInt(array[1]);
 
-                //examine lengths for proper values
-                if (array[0].length() < 12 && array[1].length() < 3) {
+                AcctValue acc = new AcctValue(dollars, cents, true);
+                return acc;
+                    
 
-                    //Try parsing to integer both dollars and cents
-                    try {
-                        int dollars = Integer.parseInt(array[0]);
-                        int cents = Integer.parseInt(array[1]);
-
-                        AcctValue acc = new AcctValue(dollars, cents, true);
-                        return acc;
-                    } catch (Exception e) {
-                        System.out.println(e.getMessage());
-                    }
-
-                }
+                
             } //We do not have a decimal
             else {
 
                 //check for reasonable length and if value is numeric
-                if (value.length() < 12 && isNumeric(value)) {
-                    int dollars = Integer.parseInt(value);
-                    int cents = 0;
+                int dollars = Integer.parseInt(value);
+                int cents = 0;
 
-                    AcctValue acc = new AcctValue(dollars, cents, true);
-                    return acc;
-                } else {
-                    //System.out.println("Make sure to use a value less than 12 digits and that consists of numbers");
-                }
+                AcctValue acc = new AcctValue(dollars, cents, true);
+                return acc;
+                
             }
         } else {
             //System.out.println("Account value too large, try less than 25 digits.");
             return new AcctValue(0, 0, false);
         }
 
-        return new AcctValue(0, 0, false);
+        
 
     }
 
     /**
-     * determines if a string is numeric with a decimal
+     * Determines if a string is numeric with a decimal using regex
      * @param value An input string
      * @return a boolean
      */
-    private static boolean isNumericWithDecimal(String str) {
+    public static boolean isNumericWithDecimal(String str) {
         //"^\\d*\\.\\d+|\\d+\\.\\d*$"
         return str.matches("^\\d*\\.\\d+|\\d+\\.\\d*$");
     }
 
     /**
-     * determines if a string is numeric 
+     * Determines if a string is numeric using regex
      * @param value An input string
      * @return a boolean
      */
-    private static boolean isNumeric(String str) {
+    public static boolean isNumeric(String str) {
         //"[0-9]+"
         return str.matches("[0-9]+");
     }
+    
+    /**
+     * Determines if a string consists of letters only using regex
+     * @param str
+     * @return
+     */
+    public static boolean isLettersOnly(String str){
+        return str.matches("[A-Za-z]*");
+    }
+
+    
 }

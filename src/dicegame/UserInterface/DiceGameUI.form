@@ -17,26 +17,11 @@
         </DimensionLayout>
       </Layout>
     </Container>
-    <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
-      <SubComponents>
-        <Menu class="javax.swing.JMenu" name="jMenu1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="File"/>
-          </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Edit"/>
-          </Properties>
-        </Menu>
-      </SubComponents>
-    </Menu>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
   <SyntheticProperties>
-    <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
@@ -56,9 +41,9 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               <Component id="pnlConfig" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               <Component id="pnlResults" max="32767" attributes="0"/>
               <EmptySpace pref="59" max="32767" attributes="0"/>
           </Group>
@@ -68,9 +53,12 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="pnlConfig" min="-2" pref="473" max="-2" attributes="0"/>
-                  <Component id="pnlResults" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="pnlResults" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <Component id="pnlConfig" min="-2" pref="438" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -90,6 +78,13 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                  <Component id="lblCurrentAcctValue" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lblNumericAccountValue" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -97,13 +92,6 @@
                       <Component id="pnlPlayer" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                  <Component id="lblCurrentAcctValue" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lblNumericAccountValue" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -119,7 +107,7 @@
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="pnlDice" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="134" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -143,6 +131,13 @@
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblRollDice" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnRoll" min="-2" pref="77" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="btnPush" min="-2" pref="77" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="lblNumSides" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblWager" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -150,17 +145,10 @@
                               </Group>
                               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtNumSides" min="-2" pref="74" max="-2" attributes="0"/>
-                                  <Component id="txtNumDice" min="-2" pref="74" max="-2" attributes="0"/>
-                                  <Component id="txtWager" min="-2" pref="74" max="-2" attributes="0"/>
+                                  <Component id="txtFWager" min="-2" pref="74" max="-2" attributes="0"/>
+                                  <Component id="txtFNumSides" alignment="0" min="-2" pref="74" max="-2" attributes="0"/>
+                                  <Component id="txtFNumDice" alignment="0" min="-2" pref="74" max="-2" attributes="0"/>
                               </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lblRollDice" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnRoll" min="-2" pref="77" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="btnPush" min="-2" pref="77" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="18" max="32767" attributes="0"/>
@@ -170,22 +158,22 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblNumDice" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtNumDice" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblNumSides" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtNumSides" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtFNumDice" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblWager" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtWager" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtFNumSides" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblNumSides" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="37" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblWager" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtFWager" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="45" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblRollDice" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnRoll" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -207,17 +195,6 @@
                 <Property name="text" type="java.lang.String" value="Number of Sides:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtNumDice">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="6"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="txtNumSides">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="6"/>
-                <Property name="actionCommand" type="java.lang.String" value="&lt;Not Set&gt;"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JLabel" name="lblRollDice">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Roll Dice:"/>
@@ -230,15 +207,13 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRollActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="lblWager">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Wager:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="txtWager">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="1000"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnPush">
@@ -248,6 +223,44 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPushActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JFormattedTextField" name="txtFWager">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="1000"/>
+                <Property name="toolTipText" type="java.lang.String" value="wager as integer"/>
+                <Property name="name" type="java.lang.String" value="txtjFormattedWager" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFWagerActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JFormattedTextField();"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="txtFWager.setInputVerifier(new CurrencyVerifier(btnRoll));&#xd;&#xa;txtFWager.addPropertyChangeListener(&quot;value&quot;, new FormattedTextFieldListener());"/>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JFormattedTextField" name="txtFNumSides">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="6"/>
+                <Property name="toolTipText" type="java.lang.String" value="The number of sides up to 60000"/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JFormattedTextField();"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="txtFNumSides.setInputVerifier(new NumericVerifier());&#xd;&#xa;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JFormattedTextField" name="txtFNumDice">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="6"/>
+                <Property name="toolTipText" type="java.lang.String" value="The number of dice up to 60000"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFNumDiceActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JFormattedTextField();"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="txtFNumDice.setInputVerifier(new NumericVerifier());&#xd;&#xa;"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
@@ -274,9 +287,9 @@
                                   <Component id="lblSubmit" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtPlayerName" min="-2" pref="74" max="-2" attributes="0"/>
-                                  <Component id="txtInitialAcctValue" min="-2" pref="74" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtFInitialAcctValue" pref="74" max="32767" attributes="0"/>
+                                  <Component id="txtFPlayerName" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -292,14 +305,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtPlayerName" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblPlayerName" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblPlayerName" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtFPlayerName" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtInitialAcctValue" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblInitialAcctValue" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtFInitialAcctValue" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -312,22 +325,6 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JTextField" name="txtInitialAcctValue">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="100000.23"/>
-                <Property name="name" type="java.lang.String" value="txtInitialAcctValue" noResource="true"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="txtPlayerName">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Name"/>
-                <Property name="toolTipText" type="java.lang.String" value=""/>
-                <Property name="name" type="java.lang.String" value="txtPlayerName" noResource="true"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPlayerNameActionPerformed"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JLabel" name="lblInitialAcctValue">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Initial Account Value:"/>
@@ -343,17 +340,48 @@
             <Component class="javax.swing.JButton" name="btnSubmit">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Submit"/>
+                <Property name="toolTipText" type="java.lang.String" value="After submit, play controls will become available."/>
+                <Property name="focusPainted" type="boolean" value="false"/>
+                <Property name="focusable" type="boolean" value="false"/>
                 <Property name="name" type="java.lang.String" value="btnSubmit" noResource="true"/>
+                <Property name="requestFocusEnabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSubmitActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="lblSubmit">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Submit:"/>
                 <Property name="name" type="java.lang.String" value="lblSubmit" noResource="true"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JFormattedTextField" name="txtFInitialAcctValue">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="100000.23"/>
+                <Property name="toolTipText" type="java.lang.String" value="Starting Account Value"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFInitialAcctValueActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JFormattedTextField();"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="txtFInitialAcctValue.setInputVerifier(new CurrencyVerifier(btnSubmit));&#xd;&#xa;txtFInitialAcctValue.addPropertyChangeListener(&quot;value&quot;, new FormattedTextFieldListener());"/>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JFormattedTextField" name="txtFPlayerName">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Name"/>
+                <Property name="toolTipText" type="java.lang.String" value="Enter player name here."/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JFormattedTextField();"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="txtFPlayerName.setInputVerifier(new LettersVerifier());&#xd;&#xa;"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
@@ -420,7 +448,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="0" pref="481" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -434,10 +462,20 @@
               <SubComponents>
                 <Component class="javax.swing.JTextArea" name="txtAreaResults">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
                     <Property name="toolTipText" type="java.lang.String" value="Results area"/>
+                    <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="txtAreaResults.setEnabled(false);"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
