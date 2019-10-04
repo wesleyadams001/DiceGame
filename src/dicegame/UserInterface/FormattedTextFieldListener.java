@@ -26,6 +26,6 @@ public class FormattedTextFieldListener implements PropertyChangeListener {
             JButton btn = DiceGameUI.getRollBtn();
             btn.setEnabled(true);
         }
-        //...//re-compute payment and update field...
+        
     }
 }

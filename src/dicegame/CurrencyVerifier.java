@@ -5,7 +5,7 @@
  */
 package dicegame;
 
-import static dicegame.InputValidation.isNumeric;
+
 import java.util.Currency;
 import javax.swing.InputVerifier;
 import javax.swing.JButton;
@@ -31,7 +31,7 @@ public class CurrencyVerifier extends InputVerifier{
         this.field = (JFormattedTextField) arg0;
         boolean result = false;
         this.value = this.field.getText();
-        result = InputValidation.isNumericWithDecimal(this.value);
+        result = Input.isNumericWithDecimal(this.value);
         
         //if it is numeric with a decimal
         if(result == true){
@@ -47,7 +47,7 @@ public class CurrencyVerifier extends InputVerifier{
             
         }
         //check for reasonable length and if value is only numeric
-        else if (this.value.length() < 12 && InputValidation.isNumeric(this.value)) {
+        else if (this.value.length() < 12 && Input.isNumeric(this.value)) {
             result = true;
         }
         

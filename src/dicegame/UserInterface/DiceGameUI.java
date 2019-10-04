@@ -16,7 +16,6 @@ import static dicegame.Input.getNumberOfSides;
 import static dicegame.Input.getPlayerName;
 import static dicegame.Input.getStartingAcctVal;
 import static dicegame.Input.getWager;
-import dicegame.InputValidation;
 import dicegame.LettersVerifier;
 import dicegame.NumericVerifier;
 import dicegame.Player;

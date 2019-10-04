@@ -23,7 +23,7 @@ public class NumericVerifier extends InputVerifier {
         
         boolean result = false;
         this.value = this.field.getText();
-        result = InputValidation.isNumeric(this.value) && this.value.length() < 7;
+        result = Input.isNumeric(this.value) && this.value.length() < 7;
         return result;
     }
     

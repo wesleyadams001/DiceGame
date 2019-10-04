@@ -22,7 +22,7 @@ public class LettersVerifier extends InputVerifier{
     public boolean verify(JComponent arg0) {
         //determine if letters and less than 20 in length
         this.value = this.field.getText();
-        boolean result = InputValidation.isLettersOnly(this.value) && this.value.length()<20;  
+        boolean result = Input.isLettersOnly(this.value) && this.value.length()<20;  
         return result; 
     }
     
