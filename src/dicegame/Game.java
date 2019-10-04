@@ -67,27 +67,32 @@ public class Game {
 
         this.MIN = numDice;
         this.MAX = numDice * numSides;
-        long[] intArray = new long[MAX-MIN];
-        long start = this.MIN;
-        
-        for (int i = 0; i < intArray.length; i++){
-            intArray[i] = start;
-            start++;
-            
-        }  
-        this.WIN_PERCENTILE_LB = Percentile(intArray, winLowerBound);
-        this.WIN_PERCENTILE_UB = Percentile(intArray, winUpperBound);
-        this.LOSE_PERCENTILE_LB = Percentile(intArray, loseLowerBound);
-        this.LOSE_PERCENTILE_UB = Percentile(intArray, loseUpperBound);
+//        long[] intArray = new long[MAX-MIN];
+//        long start = this.MIN;
+//        
+//        for (int i = 0; i < intArray.length; i++){
+//            intArray[i] = start;
+//            start++;
+//            
+//        }  
+                                //calculatePercentile((this.MAX-this.MIN), this.MIN, this.MAX, Bound)
+        this.WIN_PERCENTILE_LB = calculatePercentile((this.MAX-this.MIN), this.MIN, this.MAX, winLowerBound);//Percentile(intArray, winLowerBound); 
+        //double test = calculatePercentile((this.MAX-this.MIN), this.MIN, this.MAX, winLowerBound);
+        this.WIN_PERCENTILE_UB = calculatePercentile((this.MAX-this.MIN), this.MIN, this.MAX, winUpperBound);//Percentile(intArray, winUpperBound); 
+        //double test2 = calculatePercentile((this.MAX-this.MIN), this.MIN, this.MAX, winUpperBound);
+        this.LOSE_PERCENTILE_LB = calculatePercentile((this.MAX-this.MIN), this.MIN, this.MAX, loseLowerBound);//Percentile(intArray, loseLowerBound);
+        //double test3 = calculatePercentile((this.MAX-this.MIN), this.MIN, this.MAX, loseLowerBound);
+        this.LOSE_PERCENTILE_UB = calculatePercentile((this.MAX-this.MIN), this.MIN, this.MAX, loseUpperBound);//Percentile(intArray, loseUpperBound);
+        //double test4 = calculatePercentile((this.MAX-this.MIN), this.MIN, this.MAX, loseUpperBound);
         
         //post-operative adjustment for Law of large numbers
         if(numDice>20 && numSides>20){
             
             //calculate average
-            long avg = calculateAverage(intArray);
+            double avg = calculateAverage(this.MIN, this.MAX);
             
             //calculate the standard deviation
-            long stDev = calculateStandardDev(intArray, avg);
+            double stDev = calculateStandardDev((this.MAX-this.MIN), this.MIN, this.MAX);
             
             int denom = 0;
             if(numSides>numDice){
@@ -98,7 +103,7 @@ public class Game {
             }
             
             //calculate adjustment factor
-            long adjFactor = avg - (stDev/denom);
+            double adjFactor = avg - (stDev/denom);
             
             //assign new bound
             if(this.WIN_PERCENTILE_UB<adjFactor || this.WIN_PERCENTILE_UB>adjFactor){
@@ -122,40 +127,38 @@ public class Game {
         return arr[Index-1];
     }
     
-    /*
-    * calculates an average from the array
-    * @return long average
-    */
-    private static long calculateAverage(long[] arr){
-        long val = 0;
-        for(int x = 0; x< arr.length; x++){
-            val += arr[x];
-        }
-        val /= arr.length;
-        return val;
+    
+    private static double calculateAverage(long x, long y){
+        double avg = (x+y)/2;
+        return avg;
+    }
+    
+    private static long calculatePercentile(int valuesCnt, int min, int max, double targetPercentile)
+    {
+        double index = ((double)targetPercentile/100) * (double)valuesCnt;
+        double increment = Math.floor(index);
+        long percentile = min + (long)increment;
+        return percentile;
     }
     
     /*
-    * calculates a standard deviation from the array
+    * calculates a standard deviation dynamically
     * @return long standard deviation
     */
-    private static long calculateStandardDev(long[] arr, long avg){
-        //set a double
-        double sd = 0;
-        
-        //loop through array
-        for (int i = 0; i < arr.length; i++)
+    private static double calculateStandardDev(double cnt, int min, int max){
+        double sum1 = 0;
+        double sum2 = 0;
+        double n = min;
+        for (int i = 1; i <= cnt; i++)
         {
-            //take value at i and subtract the mean then square it and divide by the length
-            sd += Math.pow((arr[i] - avg),2) / arr.length;
+            sum1 += n;
+            sum2 += n * n;
+            n++;
         }
-        
-        //take the square root to get standard deviation
-        double standardDeviation = Math.sqrt(sd);
-        
-        //round it to get the nearest long
-        long val = Math.round(standardDeviation);
-        return val;
+        //double average = sum1 / cnt;
+        double variance = (cnt * sum2 - sum1 * sum1) / (cnt * cnt);
+        double stddev = Math.sqrt(variance);
+        return stddev;
     }
     
     
