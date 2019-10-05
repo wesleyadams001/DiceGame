@@ -19,15 +19,9 @@ import static dicegame.Input.getWager;
 import dicegame.LettersVerifier;
 import dicegame.NumericVerifier;
 import dicegame.Player;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.Locale;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
-import javax.swing.JFormattedTextField.AbstractFormatter;
-import javax.swing.JFormattedTextField.AbstractFormatterFactory;
-import javax.swing.text.InternationalFormatter;
 
 /**
  * The class that is the view for the program
@@ -400,7 +394,7 @@ public class DiceGameUI extends javax.swing.JFrame {
         // Rolls dice
         
         //create an account value object
-        AcctValue value2 = new AcctValue(-1,-1, false);
+        AcctValue value2 = new AcctValue(-1,-1);
         
         //get wager
         value2 = getWager(this.txtFWager.getText());
@@ -511,6 +505,7 @@ public class DiceGameUI extends javax.swing.JFrame {
         this.txtAreaResults.append(text);
     }
     
+    
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // Submits player info to the game
         this.playerName = getPlayerName(this.txtFPlayerName.getText());
@@ -518,7 +513,7 @@ public class DiceGameUI extends javax.swing.JFrame {
         
         //Set up initial information
         //set up a game
-        Account acct = new Account(Locale.US, this.initialAcctValue.getUnits());
+        Account acct = new Account(Locale.US, this.initialAcctValue.convertPennies());
         this.player = new Player(this.playerName, acct);
         this.game = new Game(player);
         
@@ -536,7 +531,7 @@ public class DiceGameUI extends javax.swing.JFrame {
         this.game.setPush(true);
         
         //create an account value object
-        AcctValue value2 = new AcctValue(-1,-1, false);
+        AcctValue value2 = new AcctValue(-1,-1);
         
         //get wager
         value2 = Input.getWager("0.00");

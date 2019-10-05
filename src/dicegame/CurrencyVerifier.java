@@ -21,10 +21,18 @@ public class CurrencyVerifier extends InputVerifier{
     public CurrencyVerifier(JComponent arg){
         this.btn = (JButton) arg;
     }
+    
     private JButton btn;
     private JFormattedTextField field;
     private String value;
     
+    /**
+     * Takes a component and checks that the input conforms to having the boolean properties of 
+     * numeric with decimal point or just numeric as well as verifies the lengths of the entered values
+     * by splitting the string on "." and examining length
+     * @param arg0 a Jcomponent
+     * @return boolean
+     */
     @Override
     public boolean verify(JComponent arg0) {
         
@@ -54,6 +62,11 @@ public class CurrencyVerifier extends InputVerifier{
         return result;
     }
     
+    /**
+     * Determines if the control should yield focus based on the results of the verification method
+     * @param input takes a JComponent as input
+     * @return boolean to indicate if control should yield focus
+     */
     @Override
     public boolean shouldYieldFocus(JComponent input) {
         this.field = (JFormattedTextField) input;

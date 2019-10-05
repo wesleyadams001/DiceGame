@@ -33,6 +33,8 @@ public class Game {
     private int wins =0;
     private int losses =0;
     private int pushes =0;
+    
+    //initialize bounds
     private double WIN_PERCENTILE_LB = 0;
     private double WIN_PERCENTILE_UB = 0;
     private double LOSE_PERCENTILE_LB = 0;
@@ -60,29 +62,21 @@ public class Game {
     
     
     /*
-    * Defines scoring based on number of dice available and the sides on the dice
+    * Defines scoring based on number of dice available and the sides on the dice by taking set bounds for winning and losing
     * @return void
     */
     public void defineScores(int numDice, int numSides, int winLowerBound, int winUpperBound, int loseLowerBound, int loseUpperBound){
 
         this.MIN = numDice;
         this.MAX = numDice * numSides;
-//        long[] intArray = new long[MAX-MIN];
-//        long start = this.MIN;
-//        
-//        for (int i = 0; i < intArray.length; i++){
-//            intArray[i] = start;
-//            start++;
-//            
-//        }  
-                                //calculatePercentile((this.MAX-this.MIN), this.MIN, this.MAX, Bound)
-        this.WIN_PERCENTILE_LB = calculatePercentile((this.MAX-this.MIN), this.MIN, this.MAX, winLowerBound);//Percentile(intArray, winLowerBound); 
+ 
+        this.WIN_PERCENTILE_LB = calculatePercentile((this.MAX-this.MIN), this.MIN, winLowerBound);//Percentile(intArray, winLowerBound); 
         //double test = calculatePercentile((this.MAX-this.MIN), this.MIN, this.MAX, winLowerBound);
-        this.WIN_PERCENTILE_UB = calculatePercentile((this.MAX-this.MIN), this.MIN, this.MAX, winUpperBound);//Percentile(intArray, winUpperBound); 
+        this.WIN_PERCENTILE_UB = calculatePercentile((this.MAX-this.MIN), this.MIN, winUpperBound);//Percentile(intArray, winUpperBound); 
         //double test2 = calculatePercentile((this.MAX-this.MIN), this.MIN, this.MAX, winUpperBound);
-        this.LOSE_PERCENTILE_LB = calculatePercentile((this.MAX-this.MIN), this.MIN, this.MAX, loseLowerBound);//Percentile(intArray, loseLowerBound);
+        this.LOSE_PERCENTILE_LB = calculatePercentile((this.MAX-this.MIN), this.MIN, loseLowerBound);//Percentile(intArray, loseLowerBound);
         //double test3 = calculatePercentile((this.MAX-this.MIN), this.MIN, this.MAX, loseLowerBound);
-        this.LOSE_PERCENTILE_UB = calculatePercentile((this.MAX-this.MIN), this.MIN, this.MAX, loseUpperBound);//Percentile(intArray, loseUpperBound);
+        this.LOSE_PERCENTILE_UB = calculatePercentile((this.MAX-this.MIN), this.MIN, loseUpperBound);//Percentile(intArray, loseUpperBound);
         //double test4 = calculatePercentile((this.MAX-this.MIN), this.MIN, this.MAX, loseUpperBound);
         
         //post-operative adjustment for Law of large numbers
@@ -92,7 +86,7 @@ public class Game {
             double avg = calculateAverage(this.MIN, this.MAX);
             
             //calculate the standard deviation
-            double stDev = calculateStandardDev((this.MAX-this.MIN), this.MIN, this.MAX);
+            double stDev = calculateStandardDev((this.MAX-this.MIN), this.MIN);
             
             int denom = 0;
             if(numSides>numDice){
@@ -116,24 +110,22 @@ public class Game {
         }
         
     }
+   
     
     /*
-    * calculates a percentile and returns the value associated with that percentile from the array
-    * @return long the index of the array to use
+    * calculates an average of two values
+    * @return double
     */
-    private static long Percentile(long[] arr, double Percentile)
-    {     
-        int Index = (int)Math.ceil(((double)Percentile / (double)100) * (double)arr.length);
-        return arr[Index-1];
-    }
-    
-    
     private static double calculateAverage(long x, long y){
         double avg = (x+y)/2;
         return avg;
     }
     
-    private static long calculatePercentile(int valuesCnt, int min, int max, double targetPercentile)
+     /*
+    * calculates a percentile from number of values min and max
+    * @return long as a percentile
+    */
+    private static long calculatePercentile(int valuesCnt, int min, double targetPercentile)
     {
         double index = ((double)targetPercentile/100) * (double)valuesCnt;
         double increment = Math.floor(index);
@@ -145,7 +137,7 @@ public class Game {
     * calculates a standard deviation dynamically
     * @return long standard deviation
     */
-    private static double calculateStandardDev(double cnt, int min, int max){
+    private static double calculateStandardDev(double cnt, int min){
         double sum1 = 0;
         double sum2 = 0;
         double n = min;
@@ -155,7 +147,6 @@ public class Game {
             sum2 += n * n;
             n++;
         }
-        //double average = sum1 / cnt;
         double variance = (cnt * sum2 - sum1 * sum1) / (cnt * cnt);
         double stddev = Math.sqrt(variance);
         return stddev;
@@ -247,7 +238,7 @@ public class Game {
     * @return void
     */
     public void verifyScore(){
-        //this.targetValue =12;
+        
         if(this.targetValue<=this.WIN_PERCENTILE_UB && this.targetValue >= this.WIN_PERCENTILE_LB){
             this.win = 1;
         }
@@ -260,7 +251,7 @@ public class Game {
     }
     
     /*
-    * Reports the game stats and score as a string
+    * Reports the game stats and score as a string, internally using string builder
     * @return String
     */
     public String reportGameText() {

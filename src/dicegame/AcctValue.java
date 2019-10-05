@@ -14,26 +14,17 @@ package dicegame;
  */
 public class AcctValue {
     
-    private Boolean isValid;
+  
     private int dollars;
     private int cents;
-    private long units;
     
-    public AcctValue(int dollabills, int centos, Boolean validity){
+    
+    public AcctValue(int dollabills, int centos){
         this.dollars = dollabills;
         this.cents = centos;
-        this.isValid = validity;
-        this.units = 0;
-        
+ 
     }
     
-    /**
-     * Gets the value for validity
-     * @return boolean for if valid account value
-     */
-    public Boolean getValidity(){
-        return this.isValid;
-    }
     
     /**
      * Gets the value for dollars
@@ -55,7 +46,7 @@ public class AcctValue {
      * Gets the value in units (pennies) for this instance of value
      * @return long
      */
-    public long getUnits(){
+    public long convertPennies(){
         return Utilities.convertCurrencyToUnits(this);
     }
     

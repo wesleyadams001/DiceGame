@@ -6,8 +6,6 @@
  */
 package dicegame;
 
-import java.util.Locale;
-import java.util.Scanner;
 
 /**
  * Class that contains player related information
@@ -18,7 +16,7 @@ public class Player {
     private String name;
     private Account account;
     private AcctValue wager = null;
-    private int lastDie = -1;
+    private Game game = null;
 
     public Player(String name, Account account) {
         this.name = name;
@@ -65,6 +63,8 @@ public class Player {
     public AcctValue getWager(){
         return this.wager;
     }
+    
+    
 
 
 }

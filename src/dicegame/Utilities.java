@@ -19,7 +19,7 @@ public class Utilities {
     public static AcctValue convertUnitsToCurrency(long units){
         int dollars = (int) units/100;
         int cents = (int) units%100;
-        AcctValue val = new AcctValue(dollars,cents,true);
+        AcctValue val = new AcctValue(dollars,cents);
         return val;
     }
     

@@ -5,8 +5,6 @@
  */
 package dicegame;
 
-import java.util.Scanner;
-
 /**
  * Class that contains static methods that allow for input from the GUI
  * @author Wesley
@@ -51,7 +49,7 @@ public class Input {
      * @return AcctValue object with a starting account value
      */
     public static AcctValue getStartingAcctVal(String in){
-        AcctValue value = new AcctValue(-1,-1, false);
+        AcctValue value = new AcctValue(-1,-1);
         value = parseValue(in);
         return value;
     }
@@ -62,7 +60,7 @@ public class Input {
      * @return String indicating yes(y) no(n) 
      */
     public static AcctValue getWager(String in){ 
-        AcctValue value = new AcctValue(-1,-1, false);
+        AcctValue value = new AcctValue(-1,-1);
         value = parseValue(in);
         return value;
     }
@@ -127,27 +125,6 @@ public class Input {
         return x;
     }
     
-    /**
-     * Input validation that generates an input mask based on a string that can be reused for all input boxes
-     * @param s as a string input specifier
-     * @return a MaskFormatter
-//     */
-//    public static MaskFormatter createFormatter(String s) {
-//        MaskFormatter formatter = null;
-//        try {
-//            formatter = new MaskFormatter(s);
-//        } catch (java.text.ParseException exc) {
-//            System.err.println("formatter is bad: " + exc.getMessage());
-//            System.exit(-1);
-//        }
-//    return formatter;
-//    }
-    
-//    public static NumberFormat createCurrencyFormatter(){
-//        NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
-//        format.setMaximumFractionDigits(2);
-//        return format;
-//    }
 
     /**
      * Parses a value and returns a AcctValue with a flag that indicates valid or not
@@ -170,7 +147,7 @@ public class Input {
                 int dollars = Integer.parseInt(array[0]);
                 int cents = Integer.parseInt(array[1]);
 
-                AcctValue acc = new AcctValue(dollars, cents, true);
+                AcctValue acc = new AcctValue(dollars, cents);
                 return acc;
                     
 
@@ -182,13 +159,13 @@ public class Input {
                 int dollars = Integer.parseInt(value);
                 int cents = 0;
 
-                AcctValue acc = new AcctValue(dollars, cents, true);
+                AcctValue acc = new AcctValue(dollars, cents);
                 return acc;
                 
             }
         } else {
             //System.out.println("Account value too large, try less than 25 digits.");
-            return new AcctValue(0, 0, false);
+            return new AcctValue(0, 0);
         }
 
         
