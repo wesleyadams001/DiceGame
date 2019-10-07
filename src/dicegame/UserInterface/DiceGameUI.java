@@ -492,7 +492,7 @@ public class DiceGameUI extends javax.swing.JFrame {
             game.setPush(false);
         }
         else{
-            
+            //value outside of win or lose
             printTextField("\n===========Null game==========");
         }
         

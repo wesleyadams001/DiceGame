@@ -65,29 +65,6 @@ public class Input {
         return value;
     }
    
-    /**
-     * parses dice information from a string by splitting 
-     * @param a input string
-     * @return returns a die object
-     */
-    private static Die parseDiceInfo(String a) {
-        Die die = null;
-        if (a.length() < 50 && a.contains(",")) {
-            
-            //Split string on comma
-            String[] array = a.split(",");
-            
-            //Parse
-            int sides = Integer.parseInt(array[0]);
-            int startPoint = Integer.parseInt(array[1]);
-            
-            //Create a new Die
-            die = new Die(sides, startPoint);
-            return die;
-            
-        }
-        return die;
-    }
 
     /**
      * Parses the number of dice from a string
@@ -169,7 +146,7 @@ public class Input {
 
     /**
      * Determines if a string is numeric with a decimal using regex
-     * @param value An input string
+     * @param str An input string
      * @return a boolean
      */
     public static boolean isNumericWithDecimal(String str) {
@@ -179,7 +156,7 @@ public class Input {
 
     /**
      * Determines if a string is numeric using regex
-     * @param value An input string
+     * @param str An input string
      * @return a boolean
      */
     public static boolean isNumeric(String str) {
@@ -189,8 +166,8 @@ public class Input {
     
     /**
      * Determines if a string consists of letters only using regex
-     * @param str
-     * @return
+     * @param str An input string
+     * @return boolean
      */
     public static boolean isLettersOnly(String str){
         return str.matches("[A-Za-z]*");

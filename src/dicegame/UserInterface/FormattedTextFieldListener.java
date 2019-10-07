@@ -16,6 +16,10 @@ import javax.swing.JButton;
  */
 public class FormattedTextFieldListener implements PropertyChangeListener {
 
+    /**
+     * Property change event handler that selectively enables buttons
+     * @param arg0 takes a property change event
+     */
     @Override
     public void propertyChange(PropertyChangeEvent arg0) {
        Object source = arg0.getSource();
