@@ -118,7 +118,7 @@ public class DiceGameUI extends javax.swing.JFrame {
         pnlConfig.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         pnlDice.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        pnlDice.setToolTipText("Roll Configuration");
+        pnlDice.setToolTipText("Roll Configuration:\nEnter dice and sides in a ratio of \nup to 9000 dice with 90000 sides \nOr 90000 dice with 9000 sides. ");
         pnlDice.setName("Roll Configuration"); // NOI18N
 
         lblNumDice.setText("Number of Dice:");
@@ -143,8 +143,8 @@ public class DiceGameUI extends javax.swing.JFrame {
             }
         });
 
-        txtFWager.setText("1000");
-        txtFWager.setToolTipText("wager as integer");
+        txtFWager.setText("Wager");
+        txtFWager.setToolTipText("Enter your wager here");
         txtFWager.setName("txtjFormattedWager"); // NOI18N
         txtFWager.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -223,7 +223,6 @@ public class DiceGameUI extends javax.swing.JFrame {
         btnSubmit.setText("Submit");
         btnSubmit.setToolTipText("After submit, play controls will become available.");
         btnSubmit.setFocusPainted(false);
-        btnSubmit.setFocusable(false);
         btnSubmit.setName("btnSubmit"); // NOI18N
         btnSubmit.setRequestFocusEnabled(false);
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
@@ -235,7 +234,7 @@ public class DiceGameUI extends javax.swing.JFrame {
         lblSubmit.setText("Submit:");
         lblSubmit.setName("lblSubmit"); // NOI18N
 
-        txtFInitialAcctValue.setText("100000.23");
+        txtFInitialAcctValue.setText("Account Value");
         txtFInitialAcctValue.setToolTipText("Starting Account Value");
         txtFInitialAcctValue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -251,7 +250,7 @@ public class DiceGameUI extends javax.swing.JFrame {
         pnlPlayerLayout.setHorizontalGroup(
             pnlPlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPlayerLayout.createSequentialGroup()
-                .addGroup(pnlPlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlPlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pnlPlayerLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(pnlPlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -259,8 +258,8 @@ public class DiceGameUI extends javax.swing.JFrame {
                             .addComponent(lblInitialAcctValue)
                             .addComponent(lblSubmit))
                         .addGap(26, 26, 26)
-                        .addGroup(pnlPlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtFInitialAcctValue, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
+                        .addGroup(pnlPlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtFInitialAcctValue)
                             .addComponent(txtFPlayerName)))
                     .addGroup(pnlPlayerLayout.createSequentialGroup()
                         .addGap(141, 141, 141)
@@ -505,6 +504,14 @@ public class DiceGameUI extends javax.swing.JFrame {
         this.txtAreaResults.append(text);
     }
     
+    public static JFormattedTextField getNumberOfDiceField(){
+        return txtFNumDice;
+    }
+    
+    public static JFormattedTextField getNumberOfSidesField(){
+        return txtFNumSides;
+    }
+    
     
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // Submits player info to the game
@@ -608,8 +615,8 @@ public class DiceGameUI extends javax.swing.JFrame {
     private javax.swing.JPanel pnlResults;
     private javax.swing.JTextArea txtAreaResults;
     private static javax.swing.JFormattedTextField txtFInitialAcctValue;
-    private javax.swing.JFormattedTextField txtFNumDice;
-    private javax.swing.JFormattedTextField txtFNumSides;
+    private static javax.swing.JFormattedTextField txtFNumDice;
+    private static javax.swing.JFormattedTextField txtFNumSides;
     private javax.swing.JFormattedTextField txtFPlayerName;
     private static javax.swing.JFormattedTextField txtFWager;
     // End of variables declaration//GEN-END:variables

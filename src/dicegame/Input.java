@@ -12,8 +12,8 @@ package dicegame;
 public class Input {
         
     /**
-     *
-     * @param in Scanner object for input
+     * Gets the number of dice from a string input by calling parseNumberOfSides
+     * @param in String for input
      * @return returns int for number of sides
      */
     public static int getNumberOfSides(String in){
@@ -23,8 +23,8 @@ public class Input {
     
 
     /**
-     *
-     * @param in Scanner object for input
+     * Gets the number of Dice from a string
+     * @param in String for input
      * @return int for number of sides
      */
     public static int getNumberOfDice(String in){ 
@@ -34,8 +34,8 @@ public class Input {
 
     
     /**
-     *
-     * @param in String object for input
+     * Gets the player name from a string
+     * @param in String for input
      * @return String for player name
      */
     public static String getPlayerName(String in){
@@ -44,7 +44,7 @@ public class Input {
     }
     
      /**
-     *
+     * Gets the starting account value from a string that is entered
      * @param in String for input
      * @return AcctValue object with a starting account value
      */
@@ -55,7 +55,7 @@ public class Input {
     }
     
     /**
-     *
+     * Gets the user entered wager from a string by calling the parseValue function
      * @param in Scanner object for input
      * @return String indicating yes(y) no(n) 
      */
@@ -66,47 +66,42 @@ public class Input {
     }
    
     /**
-     * parses dice information
+     * parses dice information from a string by splitting 
      * @param a input string
      * @return returns a die object
      */
     private static Die parseDiceInfo(String a) {
         Die die = null;
         if (a.length() < 50 && a.contains(",")) {
+            
             //Split string on comma
             String[] array = a.split(",");
-
-            if (isNumeric(array[0]) && isNumeric(array[1])) {
-                int sides = Integer.parseInt(array[0]);
-                int startPoint = Integer.parseInt(array[1]);
-                die = new Die(sides, startPoint);
-                return die;
-            }
-
+            
+            //Parse
+            int sides = Integer.parseInt(array[0]);
+            int startPoint = Integer.parseInt(array[1]);
+            
+            //Create a new Die
+            die = new Die(sides, startPoint);
             return die;
+            
         }
         return die;
     }
 
     /**
-     *
+     * Parses the number of dice from a string
      * @param a String input value
      * @return int representing number of die
      */
     private static int parseNumberOfDie(String a) {
-        int x = -1;
-        Boolean isNum = isNumeric(a);
-        if (isNum) {
-            x = Integer.valueOf(a);
-            return x;
-        }
-
+        int x = Integer.valueOf(a);
         return x;
     }
     
     /**
      * Parses the number of sides from a string and determines if the value is numeric
-     * as well as verifies that there are less than 13 digits because we do not need 
+     * as well as verifies that there are less than 13 digits because we do not want 
      * die that big then if the value seems reasonable cast to a string after that if 
      * evaluates that is greater than 1
      * @param a String representing input
@@ -127,7 +122,7 @@ public class Input {
     
 
     /**
-     * Parses a value and returns a AcctValue with a flag that indicates valid or not
+     * Parses a value and returns an Account Value (AcctValue) object from a string
      * @param value An input string
      * @return an account value object
      */

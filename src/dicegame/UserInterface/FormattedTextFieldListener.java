@@ -10,7 +10,8 @@ import java.beans.PropertyChangeListener;
 import javax.swing.JButton;
 
 /**
- * Registers a property change listener on the value property of a formatted text field
+ * Registers a property change listener on the value property of a formatted text field,
+ * if the property passes the verification then the button enables
  * @author Wesley
  */
 public class FormattedTextFieldListener implements PropertyChangeListener {
@@ -23,9 +24,20 @@ public class FormattedTextFieldListener implements PropertyChangeListener {
             btn.setEnabled(true);
         }
         if (source == DiceGameUI.getWagerValueField()){
-            JButton btn = DiceGameUI.getRollBtn();
-            btn.setEnabled(true);
+            
+            JButton btn = DiceGameUI.getSubmitBtn();
+            
+            if(btn.isEnabled()){
+                JButton btn1 = DiceGameUI.getRollBtn();
+                btn1.setEnabled(false);
+            }
+            else{
+                JButton btn1 = DiceGameUI.getRollBtn();
+                btn1.setEnabled(true);
+            }
+            
         }
+        
         
     }
 }

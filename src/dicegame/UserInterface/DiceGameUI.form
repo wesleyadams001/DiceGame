@@ -120,7 +120,7 @@
                 <EtchetBorder/>
               </Border>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Roll Configuration"/>
+            <Property name="toolTipText" type="java.lang.String" value="Roll Configuration:&#xa;Enter dice and sides in a ratio of &#xa;up to 9000 dice with 90000 sides &#xa;Or 90000 dice with 9000 sides. "/>
             <Property name="name" type="java.lang.String" value="Roll Configuration" noResource="true"/>
           </Properties>
 
@@ -226,8 +226,8 @@
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="txtFWager">
               <Properties>
-                <Property name="text" type="java.lang.String" value="1000"/>
-                <Property name="toolTipText" type="java.lang.String" value="wager as integer"/>
+                <Property name="text" type="java.lang.String" value="Wager"/>
+                <Property name="toolTipText" type="java.lang.String" value="Enter your wager here"/>
                 <Property name="name" type="java.lang.String" value="txtjFormattedWager" noResource="true"/>
               </Properties>
               <Events>
@@ -247,6 +247,7 @@
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JFormattedTextField();"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="txtFNumSides.setInputVerifier(new NumericVerifier());&#xd;&#xa;"/>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="txtFNumDice">
@@ -260,6 +261,7 @@
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JFormattedTextField();"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="txtFNumDice.setInputVerifier(new NumericVerifier());&#xd;&#xa;"/>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
               </AuxValues>
             </Component>
           </SubComponents>
@@ -278,7 +280,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
@@ -287,8 +289,8 @@
                                   <Component id="lblSubmit" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtFInitialAcctValue" pref="74" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtFInitialAcctValue" max="32767" attributes="0"/>
                                   <Component id="txtFPlayerName" max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -342,7 +344,6 @@
                 <Property name="text" type="java.lang.String" value="Submit"/>
                 <Property name="toolTipText" type="java.lang.String" value="After submit, play controls will become available."/>
                 <Property name="focusPainted" type="boolean" value="false"/>
-                <Property name="focusable" type="boolean" value="false"/>
                 <Property name="name" type="java.lang.String" value="btnSubmit" noResource="true"/>
                 <Property name="requestFocusEnabled" type="boolean" value="false"/>
               </Properties>
@@ -361,7 +362,7 @@
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="txtFInitialAcctValue">
               <Properties>
-                <Property name="text" type="java.lang.String" value="100000.23"/>
+                <Property name="text" type="java.lang.String" value="Account Value"/>
                 <Property name="toolTipText" type="java.lang.String" value="Starting Account Value"/>
               </Properties>
               <Events>

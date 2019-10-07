@@ -72,6 +72,7 @@ public class CurrencyVerifier extends InputVerifier{
         this.field = (JFormattedTextField) input;
         if (verify(input)) {
             field.setValue(value);
+            //this.btn.setEnabled(true);
             return true;
         } else {           
             return false;
