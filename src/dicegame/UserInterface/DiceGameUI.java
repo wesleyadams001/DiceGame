@@ -152,10 +152,10 @@ public class DiceGameUI extends javax.swing.JFrame {
             }
         });
 
-        txtFNumSides.setText("6");
+        txtFNumSides.setText("a Number");
         txtFNumSides.setToolTipText("The number of sides up to 60000");
 
-        txtFNumDice.setText("6");
+        txtFNumDice.setText("a Number");
         txtFNumDice.setToolTipText("The number of dice up to 60000");
         txtFNumDice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

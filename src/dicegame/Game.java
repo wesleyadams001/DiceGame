@@ -6,6 +6,11 @@
  */
 package dicegame;
 
+import static dicegame.Input.getNumberOfDice;
+import static dicegame.Input.getNumberOfSides;
+import static dicegame.Utilities.calculateAverage;
+import static dicegame.Utilities.calculatePercentile;
+import static dicegame.Utilities.calculateStandardDev;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Currency;
@@ -111,47 +116,6 @@ public class Game {
         
     }
    
-    
-    /*
-    * calculates an average of two values
-    * @return double
-    */
-    private static double calculateAverage(long x, long y){
-        double avg = (x+y)/2;
-        return avg;
-    }
-    
-     /*
-    * calculates a percentile from number of values min and max
-    * @return long as a percentile
-    */
-    private static long calculatePercentile(int valuesCnt, int min, double targetPercentile)
-    {
-        double index = ((double)targetPercentile/100) * (double)valuesCnt;
-        double increment = Math.floor(index);
-        long percentile = min + (long)increment;
-        return percentile;
-    }
-    
-    /*
-    * calculates a standard deviation dynamically
-    * @return long standard deviation
-    */
-    private static double calculateStandardDev(double cnt, int min){
-        double sum1 = 0;
-        double sum2 = 0;
-        double n = min;
-        for (int i = 1; i <= cnt; i++)
-        {
-            sum1 += n;
-            sum2 += n * n;
-            n++;
-        }
-        double variance = (cnt * sum2 - sum1 * sum1) / (cnt * cnt);
-        double stddev = Math.sqrt(variance);
-        return stddev;
-    }
-    
     
     /**
      * Sets the target value for comparison
@@ -268,7 +232,5 @@ public class Game {
         
         return sb.toString();
     }
-
-
 
 }

@@ -43,4 +43,44 @@ public class Utilities {
         long units = (dollars*100)+cents;
         return units;
     }
+    
+        /*
+    * calculates an average of two values
+    * @return double
+    */
+    public static double calculateAverage(long x, long y){
+        double avg = (x+y)/2;
+        return avg;
+    }
+    
+     /*
+    * calculates a percentile from number of values min and max
+    * @return long as a percentile
+    */
+    public static long calculatePercentile(int valuesCnt, int min, double targetPercentile)
+    {
+        double index = ((double)targetPercentile/100) * (double)valuesCnt;
+        double increment = Math.floor(index);
+        long percentile = min + (long)increment;
+        return percentile;
+    }
+    
+    /*
+    * calculates a standard deviation dynamically
+    * @return long standard deviation
+    */
+    public static double calculateStandardDev(double cnt, int min){
+        double sum1 = 0;
+        double sum2 = 0;
+        double n = min;
+        for (int i = 1; i <= cnt; i++)
+        {
+            sum1 += n;
+            sum2 += n * n;
+            n++;
+        }
+        double variance = (cnt * sum2 - sum1 * sum1) / (cnt * cnt);
+        double stddev = Math.sqrt(variance);
+        return stddev;
+    }
 }

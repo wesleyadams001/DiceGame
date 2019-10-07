@@ -241,7 +241,7 @@
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="txtFNumSides">
               <Properties>
-                <Property name="text" type="java.lang.String" value="6"/>
+                <Property name="text" type="java.lang.String" value="a Number"/>
                 <Property name="toolTipText" type="java.lang.String" value="The number of sides up to 60000"/>
               </Properties>
               <AuxValues>
@@ -252,7 +252,7 @@
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="txtFNumDice">
               <Properties>
-                <Property name="text" type="java.lang.String" value="6"/>
+                <Property name="text" type="java.lang.String" value="a Number"/>
                 <Property name="toolTipText" type="java.lang.String" value="The number of dice up to 60000"/>
               </Properties>
               <Events>
