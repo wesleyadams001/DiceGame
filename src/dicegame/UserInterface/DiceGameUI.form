@@ -41,11 +41,22 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-              <Component id="pnlConfig" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" pref="306" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Component id="pnlConfig" min="-2" pref="305" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
               <Component id="pnlResults" max="32767" attributes="0"/>
-              <EmptySpace pref="59" max="32767" attributes="0"/>
+              <EmptySpace pref="97" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -53,14 +64,17 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="pnlResults" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                      <Component id="pnlConfig" min="-2" pref="438" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="pnlResults" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="pnlConfig" min="-2" pref="432" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="17" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -120,7 +134,7 @@
                 <EtchetBorder/>
               </Border>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Roll Configuration:&#xa;Enter dice and sides in a ratio of &#xa;up to 9000 dice with 90000 sides &#xa;Or 90000 dice with 9000 sides. "/>
+            <Property name="toolTipText" type="java.lang.String" value="Roll configuration"/>
             <Property name="name" type="java.lang.String" value="Roll Configuration" noResource="true"/>
           </Properties>
 
@@ -203,6 +217,7 @@
             <Component class="javax.swing.JButton" name="btnRoll">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Roll!"/>
+                <Property name="toolTipText" type="java.lang.String" value="Becomes available after setting a valid wager"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRollActionPerformed"/>
@@ -242,7 +257,7 @@
             <Component class="javax.swing.JFormattedTextField" name="txtFNumSides">
               <Properties>
                 <Property name="text" type="java.lang.String" value="a Number"/>
-                <Property name="toolTipText" type="java.lang.String" value="The number of sides up to 60000"/>
+                <Property name="toolTipText" type="java.lang.String" value="The number of sides from 6 up to 90000"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JFormattedTextField();"/>
@@ -253,7 +268,7 @@
             <Component class="javax.swing.JFormattedTextField" name="txtFNumDice">
               <Properties>
                 <Property name="text" type="java.lang.String" value="a Number"/>
-                <Property name="toolTipText" type="java.lang.String" value="The number of dice up to 60000"/>
+                <Property name="toolTipText" type="java.lang.String" value="The number of dice from 1 up to 90000"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFNumDiceActionPerformed"/>
@@ -299,7 +314,7 @@
                               <Component id="btnSubmit" min="-2" pref="103" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="39" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -342,7 +357,7 @@
             <Component class="javax.swing.JButton" name="btnSubmit">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Submit"/>
-                <Property name="toolTipText" type="java.lang.String" value="After submit, play controls will become available."/>
+                <Property name="toolTipText" type="java.lang.String" value="Valid initial account value will enable submit."/>
                 <Property name="focusPainted" type="boolean" value="false"/>
                 <Property name="name" type="java.lang.String" value="btnSubmit" noResource="true"/>
                 <Property name="requestFocusEnabled" type="boolean" value="false"/>
@@ -363,7 +378,7 @@
             <Component class="javax.swing.JFormattedTextField" name="txtFInitialAcctValue">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Account Value"/>
-                <Property name="toolTipText" type="java.lang.String" value="Starting Account Value"/>
+                <Property name="toolTipText" type="java.lang.String" value="Starting Account Value (positive integer)"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFInitialAcctValueActionPerformed"/>
@@ -444,12 +459,12 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" alignment="0" pref="235" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="0" pref="386" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" alignment="0" pref="481" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -484,5 +499,16 @@
         </Container>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Enter dice and sides in any ratio of up to 9000 "/>
+        <Property name="verticalAlignment" type="int" value="1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="dice with 90000 sides or 90000 dice with 9000 sides."/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>

@@ -101,6 +101,8 @@ public class DiceGameUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAreaResults = new javax.swing.JTextArea();
         txtAreaResults.setEnabled(false);
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -118,7 +120,7 @@ public class DiceGameUI extends javax.swing.JFrame {
         pnlConfig.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         pnlDice.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        pnlDice.setToolTipText("Roll Configuration:\nEnter dice and sides in a ratio of \nup to 9000 dice with 90000 sides \nOr 90000 dice with 9000 sides. ");
+        pnlDice.setToolTipText("Roll configuration");
         pnlDice.setName("Roll Configuration"); // NOI18N
 
         lblNumDice.setText("Number of Dice:");
@@ -128,6 +130,7 @@ public class DiceGameUI extends javax.swing.JFrame {
         lblRollDice.setText("Roll Dice:");
 
         btnRoll.setText("Roll!");
+        btnRoll.setToolTipText("Becomes available after setting a valid wager");
         btnRoll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRollActionPerformed(evt);
@@ -153,10 +156,10 @@ public class DiceGameUI extends javax.swing.JFrame {
         });
 
         txtFNumSides.setText("a Number");
-        txtFNumSides.setToolTipText("The number of sides up to 60000");
+        txtFNumSides.setToolTipText("The number of sides from 6 up to 90000");
 
         txtFNumDice.setText("a Number");
-        txtFNumDice.setToolTipText("The number of dice up to 60000");
+        txtFNumDice.setToolTipText("The number of dice from 1 up to 90000");
         txtFNumDice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFNumDiceActionPerformed(evt);
@@ -221,7 +224,7 @@ public class DiceGameUI extends javax.swing.JFrame {
         lblPlayerName.setName("lblPlayerName"); // NOI18N
 
         btnSubmit.setText("Submit");
-        btnSubmit.setToolTipText("After submit, play controls will become available.");
+        btnSubmit.setToolTipText("Valid initial account value will enable submit.");
         btnSubmit.setFocusPainted(false);
         btnSubmit.setName("btnSubmit"); // NOI18N
         btnSubmit.setRequestFocusEnabled(false);
@@ -235,7 +238,7 @@ public class DiceGameUI extends javax.swing.JFrame {
         lblSubmit.setName("lblSubmit"); // NOI18N
 
         txtFInitialAcctValue.setText("Account Value");
-        txtFInitialAcctValue.setToolTipText("Starting Account Value");
+        txtFInitialAcctValue.setToolTipText("Starting Account Value (positive integer)");
         txtFInitialAcctValue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFInitialAcctValueActionPerformed(evt);
@@ -264,7 +267,7 @@ public class DiceGameUI extends javax.swing.JFrame {
                     .addGroup(pnlPlayerLayout.createSequentialGroup()
                         .addGap(141, 141, 141)
                         .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlPlayerLayout.setVerticalGroup(
             pnlPlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -339,11 +342,11 @@ public class DiceGameUI extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
 
         javax.swing.GroupLayout pnlResultsLayout = new javax.swing.GroupLayout(pnlResults);
@@ -363,27 +366,42 @@ public class DiceGameUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jLabel1.setText("Enter dice and sides in any ratio of up to 9000 ");
+        jLabel1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        jLabel2.setText("dice with 90000 sides or 90000 dice with 9000 sides.");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(pnlConfig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(pnlConfig, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(46, 46, 46)
                 .addComponent(pnlResults, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlResults, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(pnlResults, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(pnlConfig, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(pnlConfig, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -401,7 +419,10 @@ public class DiceGameUI extends javax.swing.JFrame {
         Roll(value2);
     }//GEN-LAST:event_btnRollActionPerformed
     
-    
+    /**
+     * Rolls the dice for the game since the user interacts with the UI the UI is effectively 'rolling'
+     * @param value2 an account value
+     */
     public void Roll(AcctValue value2){
         
         //get number of dice
@@ -511,8 +532,7 @@ public class DiceGameUI extends javax.swing.JFrame {
     public static JFormattedTextField getNumberOfSidesField(){
         return txtFNumSides;
     }
-    
-    
+     
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // Submits player info to the game
         this.playerName = getPlayerName(this.txtFPlayerName.getText());
@@ -598,6 +618,8 @@ public class DiceGameUI extends javax.swing.JFrame {
     private static javax.swing.JButton btnRoll;
     private static javax.swing.JButton btnSubmit;
     private javax.swing.JFrame jFrame1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCurrentAcctValue;

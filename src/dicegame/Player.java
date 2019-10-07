@@ -64,8 +64,5 @@ public class Player {
         return this.wager;
     }
     
-    
-    
-
 
 }

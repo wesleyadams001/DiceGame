@@ -6,14 +6,14 @@
 package dicegame;
 
 /**
- * A Utilities class to hold simple helper functions related to currency
+ * A Utilities class to hold simple helper functions that involve math calculations
  * @author Wesley
  */
 public class Utilities {
     
     /**
-     * converts units to currency
-     * @param units
+     * converts pennies to currency
+     * @param units units of a dollar ie pennies
      * @return AcctValue with dollars and cents
      */
     public static AcctValue convertUnitsToCurrency(long units){
@@ -24,7 +24,7 @@ public class Utilities {
     }
     
     /**
-     * converts currency to units
+     * converts currency to pennies
      * @param val
      * @return long with pennies
      */
@@ -34,7 +34,7 @@ public class Utilities {
     }
     
     /**
-     * converts currency to units
+     * converts currency to pennies
      * @param dollars
      * @param cents
      * @return long with pennies
